@@ -8,12 +8,17 @@
 	url = "github:nix-community/home-manager";
 	inputs.nixpkgs.follows = "nixpkgs";
   };
+
  
   nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
   zen-browser.url = "github:cutekylie/zen-browser-flake";
+
+  # hyprland.url = "github:hyprwm/Hyprland";  
   
 };
+
+
 
   outputs = { self, nixpkgs, ... }@inputs: 
   let
@@ -21,14 +26,19 @@
     pkgs = nixpkgs.legacyPackages.${system};
   in
 
+
+
   {
     nixosConfigurations = {
         system = nixpkgs.lib.nixosSystem {
-              specialArgs = {inherit inputs;};
+              specialArgs = {inherit inputs; };
               modules = [
                 ./system/config.nix
               ];
         };    
-     };
+     }; 
   };
+
+
+
 }
