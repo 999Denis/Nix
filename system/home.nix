@@ -6,7 +6,7 @@
   home.stateVersion = "24.11";
 
   home.packages = with pkgs; [
-	micro
+	firefox
 	discord
 	inputs.zen-browser.packages."${system}".default
   ];
