@@ -2,11 +2,28 @@
 { config, lib, pkgs, inputs, ... }:
 
 {
-  imports =
-    [ 
-      ./drives.nix
-      inputs.home-manager.nixosModules.default
-    ];
+
+  networking.hostName = "Nix";
+  system.stateVersion = "24.11";
+
+  nixpkgs.config.allowUnfree = true;
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+
+
+  boot.loader.systemd-boot.enable = true;
+  boot.loader.efi.canTouchEfiVariables = true;
+
+
+  time.timeZone = "Europe/Rome";
+  i18n.defaultLocale = "en_US.UTF-8";
+  services.xserver.xkb.layout = "us";
+  
+
+  users.users.denis = {
+    isNormalUser = true;
+    extraGroups = [ "wheel" "networkmanager" ];
+  };
+  
 
   home-manager = {
       extraSpecialArgs = { inherit inputs;};
@@ -16,48 +33,11 @@
   };
 
 
-  boot.loader.systemd-boot.enable = true;
-  boot.loader.efi.canTouchEfiVariables = true;
-
-
-  networking.hostName = "nix";
-
-
-  networking.networkmanager.enable = true;
-
-
-  time.timeZone = "Europe/Rome";
-
-
-  i18n.defaultLocale = "en_US.UTF-8";
-
-
-  services.xserver.enable = true;
-
-
-  services.xserver.displayManager.gdm.enable = true;
-  services.xserver.desktopManager.gnome.enable = true;
-
-
-  services.xserver.xkb.layout = "us";
-
-
-  services.pipewire = {
-    enable = true;
-    pulse.enable = true;
-  };
-
-
-  users.users.denis = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" "networkmanager" ];
-  };
-
-
-  programs.firefox.enable = true;
-
-
-  nixpkgs.config.allowUnfree = true;
+  imports =
+    [ 
+        inputs.home-manager.nixosModules.default
+      ./drives.nix
+    ];
 
 
   services.xserver.videoDrivers = ["nvidia"];
@@ -72,10 +52,37 @@
   };
 
 
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
- 
+  services.pipewire = {
+    enable = true;
+    pulse.enable = true;
+  };
 
-  system.stateVersion = "24.11";
 
+  networking.networkmanager.enable = true;
+
+
+  services.xserver.enable = true;
+
+
+  programs.hyprland = {
+  	enable = true;
+    package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
+    portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+  };
+
+
+  environment.systemPackages with pkgs; [
+    git
+    micro
+    neofetch
+    fastfetch
+    wget
+  ];
+
+
+
+# TO REMOVE.
+  services.xserver.displayManager.gdm.enable = true;
+  services.xserver.desktopManager.gnome.enable = true;
+  programs.firefox.enable = true;
 }
-
