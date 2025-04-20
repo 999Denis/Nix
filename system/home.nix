@@ -8,9 +8,6 @@
 
   imports =
   	[
-  		../modules/neofetch/neofetch.nix
-		../modules/shell.nix
-		../modules/micro.nix
   	];
 
   	
