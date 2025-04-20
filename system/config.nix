@@ -21,7 +21,7 @@
   users.users.denis = 
 	{
 		isNormalUser = true;
-    	extraGroups = [ "wheel" "networkmanager" ];
+    		extraGroups = [ "wheel" "networkmanager" ];
   	};
 
   home-manager = 
@@ -37,7 +37,7 @@
 	{
 		enable = true;
   		package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    	portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
+    		portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
 	};
 	
   services.xserver.enable = true;
