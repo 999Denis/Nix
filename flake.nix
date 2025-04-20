@@ -13,10 +13,6 @@
  
   		nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
 
-  		zen-browser.url = "github:cutekylie/zen-browser-flake";
-
-  		hyprland.url = "github:hyprwm/Hyprland";  
-
 	};
 
 
