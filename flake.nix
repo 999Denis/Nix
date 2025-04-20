@@ -17,12 +17,6 @@
 
   		hyprland.url = "github:hyprwm/Hyprland";  
 
-#  		astal = {
-#      url = "github:aylur/astal";
-#      inputs.nixpkgs.follows = "nixpkgs";
-#    };
-#    	matugen.url = "github:InioX/matugen?ref=v2.2.0";
-
 	};
 
 
