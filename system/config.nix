@@ -8,14 +8,14 @@
 		inputs.home-manager.nixosModules.default
      		./drives.nix
      		../modules/gnome.nix
-    ];
+    	];
 
   environment.systemPackages = with pkgs; 
 	[
-	git
-    	fastfetch
-    	wget
-    	kitty
+		git
+    		fastfetch
+    		wget
+    		kitty
   	];
 
   users.users.denis = 
@@ -33,13 +33,7 @@
       		};
   	};
 
-  programs.hyprland = 
-	{
-		enable = true;
-  		package = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.hyprland;
-    		portalPackage = inputs.hyprland.packages.${pkgs.stdenv.hostPlatform.system}.xdg-desktop-portal-hyprland;
-	};
-	
+
   services.xserver.enable = true;
   services.xserver.displayManager.gdm.enable = true;
   services.xserver.videoDrivers = ["nvidia"];
@@ -89,8 +83,8 @@
 
   services.pipewire = 
   	{
-    	enable = true;
-    	pulse.enable = true;
+    		enable = true;
+    		pulse.enable = true;
   	};
 
 
