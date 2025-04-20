@@ -11,21 +11,17 @@
   		../modules/neofetch/neofetch.nix
 		../modules/shell.nix
 		../modules/micro.nix
-#		/home/denis/Nix/modules/ags.nix
-#		/home/denis/Nix/modules/dconf.nix
-#		/home/denis/Nix/modules/packages.nix
   	];
 
   	
   home.packages = with pkgs; 
   	[
-		#inputs.zen-browser.packages."${system}".default
+		inputs.zen-browser.packages."${system}".default
 		discord
 		firefox
 		rofi
 		gedit
 		nautilus
-#		ags_1
   	];
 
   programs.home-manager.enable = true;
